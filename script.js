@@ -16,7 +16,7 @@ function checkTheNumber() {
     }
     //When number matches the secret number
     else if (number === secretNumber) {
-      displayMessage('Awesome !! Correct Number');
+      displayMessage('🥳 Awesome !! Correct Number');
       document.querySelector('.number').textContent = secretNumber;
       document.querySelector('body').style.backgroundColor = 'green';
       document.querySelector('.number').style.width = '30rem';
@@ -26,13 +26,18 @@ function checkTheNumber() {
       if (score > highScore) {
         highScore = score;
         document.getElementById('highscore').textContent = highScore;
+        displayMessage('🥳🥳🥳🥳 Congrats !! Its a high score .');
       }
     }
     // When number is too high or low
     else {
-      displayMessage(
-        number > secretNumber ? '😱 !! Too high' : '😱 !! Too low'
-      );
+      if (number === secretNumber + 1 || number === secretNumber - 1) {
+        displayMessage('🥶 Too close');
+      } else {
+        displayMessage(
+          number > secretNumber ? '😱 !! Too high' : '😱 !! Too low'
+        );
+      }
       score--;
       document.querySelector('.score').textContent = score;
     }
@@ -56,5 +61,5 @@ function startTheGameAgain() {
   document.querySelector('body').style.backgroundColor = '#222';
   document.querySelector('.number').style.width = '15rem';
   document.querySelector('#check').addEventListener('click', checkTheNumber);
-  displayMessage = 'Start guessing...';
+  displayMessage('Start guessing...');
 }
